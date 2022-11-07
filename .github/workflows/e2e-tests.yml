@@ -1,0 +1,29 @@
+name: E2E tests
+on:
+  schedule:
+  # run this on schedule as well https://www.techielass.com/schedule-github-actions-using-cron-expressions/
+  # how do we provide the input then? composite action might be needed
+    - cron: '10 * * * 1-5'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment you want to test (either test or acc)'
+        required: true
+        default: 'test'
+env:
+  CYPRESS_CACHE_FOLDER: /home/runner/.cache/Cypress
+  CYPRESS_OGP_CREDENTIALS: ${{ secrets.CYPRESS_OGP_CREDENTIALS }}
+  CYPRESS_OGP_EMAIL: ${{ secrets.CYPRESS_OGP_EMAIL }}
+  CYPRESS_HQ_CREDENTIALS: ${{ secrets.CYPRESS_HQ_CREDENTIALS }}
+  CYPRESS_HQ_EMAIL: ${{ secrets.CYPRESS_HQ_EMAIL }}
+  CYPRESS_ENVIRONMENT: ${{ INPUT_ENVIRONMENT }}
+run-name: ${{ github.event.head_commit.message }} (E2E tests)
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: echo
+        run: echo "hello world"
