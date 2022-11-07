@@ -1,9 +1,6 @@
 name: E2E tests
 on:
-  schedule:
-  # run this on schedule as well https://www.techielass.com/schedule-github-actions-using-cron-expressions/
-  # how do we provide the input then? composite action might be needed
-    - cron: '10 * * * 1-5'
+  push:
   workflow_dispatch:
     inputs:
       environment:
@@ -16,8 +13,8 @@ env:
   CYPRESS_OGP_EMAIL: ${{ secrets.CYPRESS_OGP_EMAIL }}
   CYPRESS_HQ_CREDENTIALS: ${{ secrets.CYPRESS_HQ_CREDENTIALS }}
   CYPRESS_HQ_EMAIL: ${{ secrets.CYPRESS_HQ_EMAIL }}
-  CYPRESS_ENVIRONMENT: ${{ INPUT_ENVIRONMENT }}
-run-name: ${{ github.event.head_commit.message }} (E2E tests)
+  CYPRESS_ENVIRONMENT: ${{ github.event.inputs.environment || 'hello world' }}
+run-name: E2E tests running on ${{ env.CYPRESS_ENVIRONMENT }}
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -26,4 +23,4 @@ jobs:
         uses: actions/checkout@v3
 
       - name: echo
-        run: echo "hello world"
+        run: echo ${{ env.CYPRESS_ENVIRONMENT }}
