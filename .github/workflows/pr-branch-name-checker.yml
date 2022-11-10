@@ -1,4 +1,4 @@
-name: "PR Branch Name Checker"
+name: "Check branch name"
 on:
   pull_request:
     types:
