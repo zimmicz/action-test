@@ -1,0 +1,19 @@
+name: "PR Branch Name Checker"
+on:
+  pull_request_target:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - labeled
+      - unlabeled
+
+jobs:
+  branch-naming-rules:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: deepakputhraya/action-branch-name@master
+        with:
+          regex: '((LEV|LW)-[0-9]+])\S+'
+          allowed_prefixes: 'feature/,fix/'
+          ignore: main,develop

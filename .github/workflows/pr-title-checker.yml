@@ -16,12 +16,3 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           configuration_path: ".github/pr-title-checker-config.json"
-  branch-naming-rules:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: deepakputhraya/action-branch-name@master
-        with:
-#\\[(LEV|LW)-[0-9]+\\] [A-Z]{1}.*
-          regex: '((LEV|LW)-[0-9]+])\S+'
-          allowed_prefixes: 'feature/,fix/'
-          ignore: main,develop
