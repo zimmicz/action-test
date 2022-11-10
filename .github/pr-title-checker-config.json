@@ -4,7 +4,7 @@
     "color": "EEEEEE"
   },
   "CHECKS": {
-    "regexp": "\\[LEV-[0-9]+\\][A-Z]{1}.*",
+    "regexp": "\\[(LEV|LW)-[0-9]+\\] [A-Z]{1}.*",
     "ignoreLabels" : ["skip-title-check", "creative-friday"]
   },
   "MESSAGES": {
