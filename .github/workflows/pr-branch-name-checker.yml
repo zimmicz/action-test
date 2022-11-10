@@ -1,4 +1,4 @@
-name: "Check branch name"
+name: "Check PR branch name"
 on:
   pull_request:
     types:
