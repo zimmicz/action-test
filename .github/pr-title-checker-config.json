@@ -4,14 +4,11 @@
     "color": "EEEEEE"
   },
   "CHECKS": {
-    "prefixes": ["fix: ", "feat: "],
-    "regexp": "docs\\(v[0-9]\\): ",
-    "regexpFlags": "i",
-    "ignoreLabels" : ["dont-check-PRs-with-this-label", "meta"]
+    "regexp": "\\[LEV-[0-9]+\\].*",
+    "ignoreLabels" : ["skip-title-check", "creative-friday"]
   },
   "MESSAGES": {
-    "success": "All OK",
-    "failure": "Failing CI test",
-    "notice": ""
+    "success": "PR title is ok",
+    "failure": "Failing CI test"
   }
 }
