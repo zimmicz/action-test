@@ -12,3 +12,6 @@ jobs:
           pullRequestOpened: |
             👋 @{{ author }}
             The title is: ${{ github.event.pull_request.title }}
+          pullRequestReopened: |
+            👋 @{{ author }}
+            The title is: ${{ github.event.pull_request.title }}
