@@ -14,6 +14,6 @@ jobs:
     steps:
       - uses: deepakputhraya/action-branch-name@master
         with:
-          regex: '((LEV|LW)-[0-9]+])\S+'
-          allowed_prefixes: 'feature/,fix/'
+          regex: '(LEV|LW)-[0-9]+-\S+'
+          allowed_prefixes: 'feature,fix'
           ignore: main,develop
