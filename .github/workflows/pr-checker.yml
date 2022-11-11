@@ -13,9 +13,9 @@ jobs:
     if: startsWith(github.head_ref, 'feature,bugfix,hotfix')
     steps:
       - uses: deepakputhraya/action-branch-name@master
-      with:
-        regex: '[a-z]+\/(LEV|LW)-[0-9]+-\S+'
-        allowed_prefixes: 'feature,bugfix,hotfix'
+        with:
+          regex: '[a-z]+\/(LEV|LW)-[0-9]+-\S+'
+          allowed_prefixes: 'feature,bugfix,hotfix'
 
   release-branch-naming-rules:
     runs-on: ubuntu-latest
