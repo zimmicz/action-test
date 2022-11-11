@@ -23,7 +23,7 @@ jobs:
         if: contains('refs/heads/release', github.head_ref)
         uses: deepakputhraya/action-branch-name@master
         with:
-          regex: 'v\.[0-9]+.[0-9]+.[0-9]+'
+          regex: 'v[0-9]+.[0-9]+.[0-9]+'
 
       - name: fallback
         run: exit 1
