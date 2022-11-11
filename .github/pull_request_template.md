@@ -2,6 +2,7 @@
 
 
 ## Jira ticket
+[{{JIRA_TICKET_NUMBER}}](https://levelworks.atlassian.net/browse/{{JIRA_TICKET_NUMBER}})
 
 
 ## Testing instructions: consider all context relevant for this ticket.
