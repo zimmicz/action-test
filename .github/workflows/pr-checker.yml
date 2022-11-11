@@ -9,6 +9,8 @@ on:
 
 env:
   FEATURE_OR_FIX: startsWith(github.head_ref, 'feature,bugfix,hotfix')
+  IS_RELEASE: startsWith(github.head_ref, 'release')
+  IS_CREATIVE_FRIDAY: startsWith(github.head_ref, 'creative-friday')
 
 jobs:
   branch-naming-rules:
@@ -16,7 +18,7 @@ jobs:
     steps:
       - name: check feature or bugfix or hotfix branch name format
         id: check1
-        if: ${{env.FEATURE_OR_FIX}}
+        if: startsWith(github.head_ref, 'feature,bugfix,hotfix')
         uses: deepakputhraya/action-branch-name@master
         with:
           regex: '[a-z]+\/(LEV|LW)-[0-9]+-\S+'
@@ -24,7 +26,7 @@ jobs:
 
       - name: check release branch name format
         id: check2
-        if: startsWith(github.head_ref, 'release')
+        if: ${{env.IS_RELEASE}}
         uses: deepakputhraya/action-branch-name@master
         with:
           regex: '[a-z]+\/v[0-9]+.[0-9]+.[0-9]+'
@@ -32,7 +34,7 @@ jobs:
 
       - name: check creative friday branch name format
         id: check3
-        if: startsWith(github.head_ref, 'creative-friday')
+        if: ${{env.IS_CREATIVE_FRIDAY}}
         uses: deepakputhraya/action-branch-name@master
         with:
           regex: '[a-z]+\/\S+'
