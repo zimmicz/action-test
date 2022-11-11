@@ -11,23 +11,39 @@ jobs:
   branch-naming-rules:
     runs-on: ubuntu-latest
     steps:
-      - name: echo
-        run: |
-          echo ${{contains(github.head_ref, 'release')}}
-      - name: check1
+      - name: check feature or bugfix or hotfix branch name format
         if: startsWith(github.head_ref, 'feature,bugfix,hotfix')
         uses: deepakputhraya/action-branch-name@master
         with:
           regex: '(LEV|LW)-[0-9]+-\S+'
+          allowed_prefixes: 'feature,bugfix,hotfix'
 
-      - name: check2
+      - name: check release branch name format
         if: startsWith(github.head_ref, 'release')
         uses: deepakputhraya/action-branch-name@master
         with:
           regex: 'v[0-9]+.[0-9]+.[0-9]+'
+          allowed_prefixes: 'release'
+
+      - name: check creative friday branch name format
+        if: startsWith(github.head_ref, 'creative-friday')
+        uses: deepakputhraya/action-branch-name@master
+        with:
+          regex: '\S+'
+          allowed_prefixes: 'creative-friday'
 
       - name: fallback
         if: failure()
         run: |
-          echo "Branch name does not adhere to standards."
+          cat <<'END'
+          Branch name does not adhere to standards. Following branch names are allowed:
+            bugfix/LEV-100-hello-world
+            bugfix/LW-100-hello-world
+            feature/LEV-100-hello-world
+            feature/LW-100-hello-world
+            hotfix/LEV-100-hello-world
+            hotfix/LW-100-hello-world
+            release/v1.0.0
+            creative-friday/hello-world
+          END
           exit 1
