@@ -4,14 +4,12 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - name: get PR title
+      - name: get JIRA ticket number
         # extract ticket number out of the title
         run: echo "TICKET_NUMBER=$(echo ${{ github.event.pull_request.title }} | cut -f 1 -d ' ' | sed 's/\[//g' | sed 's/\]//g')" >> $GITHUB_ENV
-      - name: echo PR title
-        run: echo $TICKET_NUMBER
       - uses: wow-actions/auto-comment@v1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           pullRequestOpened: |
             👋 @{{ author }}
-            The title is: ${{ github.event.pull_request.title }}
+            JIRA link: [${{TICKET_NUMBER}}](https://levelworks.atlassian.net/browse/${{TICKET_NUMBER}})
