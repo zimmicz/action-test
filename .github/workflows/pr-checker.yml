@@ -1,4 +1,4 @@
-name: "Check PR branch name"
+name: "Check PR"
 on:
   pull_request:
     types:
@@ -7,12 +7,15 @@ on:
       - edited
       - synchronize
 
+env:
+  FEATURE_OR_FIX: startsWith(github.head_ref, 'feature,bugfix,hotfix')
+
 jobs:
   branch-naming-rules:
     runs-on: ubuntu-latest
     steps:
       - name: check feature or bugfix or hotfix branch name format
-        if: startsWith(github.head_ref, 'feature,bugfix,hotfix')
+        if: $FEATURE_OR_FIX
         uses: deepakputhraya/action-branch-name@master
         with:
           regex: '[a-z]+\/(LEV|LW)-[0-9]+-\S+'
@@ -42,3 +45,24 @@ jobs:
             creative-friday/description
           END
           exit 1
+
+  title-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: thehanimo/pr-title-checker@v1.3.5
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          configuration_path: ".github/pr-title-checker-config.json"
+
+  insert-jira-link:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get JIRA ticket number
+        # extract JIRA ticket number out of the title
+        run: echo "JIRA_TICKET_NUMBER=$(echo ${{ github.event.pull_request.title }} | cut -f 1 -d ' ' | sed 's/\[//g' | sed 's/\]//g')" >> $GITHUB_ENV
+      - uses: wow-actions/auto-comment@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          pullRequestOpened: |
+            We found a JIRA ticket for you!
+            JIRA link: [${{ env.JIRA_TICKET_NUMBER }}](https://levelworks.atlassian.net/browse/${{ env.JIRA_TICKET_NUMBER }})
