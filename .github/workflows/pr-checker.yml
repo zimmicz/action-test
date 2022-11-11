@@ -41,13 +41,13 @@ jobs:
     if: job.feature-or-fix-branch-naming-rules.outcome == 'skipped' && steps.release-branch-naming-rules.outcome == 'skipped' && steps.creative-friday-branch-naming-rules.outcome == 'skipped'
     steps:
       - run: |
-        cat <<'END'
-        Branch name does not adhere to standards. Following branch name patterns are allowed:
-          (bugfix|hotfix|feature)/(LW|LEV)-NUMBER-description
-          release/vX.Y.Z
-          creative-friday/description
-        END
-        exit 1
+          cat <<'END'
+          Branch name does not adhere to standards. Following branch name patterns are allowed:
+            (bugfix|hotfix|feature)/(LW|LEV)-NUMBER-description
+            release/vX.Y.Z
+            creative-friday/description
+          END
+          exit 1
 
   title-check:
     runs-on: ubuntu-latest
