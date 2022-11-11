@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: check feature or bugfix or hotfix branch name format
-        if: $FEATURE_OR_FIX
+        if: ${{FEATURE_OR_FIX}}
         uses: deepakputhraya/action-branch-name@master
         with:
           regex: '[a-z]+\/(LEV|LW)-[0-9]+-\S+'
