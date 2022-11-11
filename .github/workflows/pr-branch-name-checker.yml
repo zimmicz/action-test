@@ -13,16 +13,15 @@ jobs:
     steps:
       - name: echo
         run: |
-          echo ${{github.head_ref}}
-          echo ${{contains('rel',github.head_ref)}}
+          echo ${{contains(github.head_ref, 'release')}}
       - name: check1
-        if: startsWith('feature,bugfix,hotfix', github.head_ref)
+        if: startsWith(github.head_ref, 'feature,bugfix,hotfix')
         uses: deepakputhraya/action-branch-name@master
         with:
           regex: '(LEV|LW)-[0-9]+-\S+'
 
       - name: check2
-        if: startsWith('release', github.head_ref)
+        if: startsWith(github.head_ref, 'release')
         uses: deepakputhraya/action-branch-name@master
         with:
           regex: 'v[0-9]+.[0-9]+.[0-9]+'
