@@ -58,6 +58,7 @@ jobs:
   insert-jira-link:
     runs-on: ubuntu-latest
     needs: title-check
+    if: startsWith(github.head_ref, 'feature,bugfix,hotfix')
     steps:
       - name: get JIRA ticket number
         # extract JIRA ticket number out of the title
