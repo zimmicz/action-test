@@ -13,5 +13,4 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           pullRequestOpened: |
-            👋 @{{ author }}, we found a JIRA ticket for you!
-          JIRA link: [${{ env.TICKET_NUMBER }}](https://www.google.com)
+            👋 @{{ author }}, we found a JIRA ticket for you! JIRA link: [${{ env.TICKET_NUMBER }}](https://www.google.com)
