@@ -29,10 +29,10 @@ jobs:
 
       - name: test
         run: |
-          echo ${{steps.check1.outcome}}
-          echo ${{steps.check2.outcome}}
-          echo ${{steps.check1.conclusion}}
-          echo ${{steps.check2.conclusion}}
+          echo ${{steps.check1.outcome == 'success'}}
+          echo ${{steps.check2.outcome == 'success'}}
+          echo ${{steps.check1.conclusion == 'success'}}
+          echo ${{steps.check2.conclusion == 'success'}}
 
       - name: result
         if: always() && (steps.check1.outcome == 'success' || steps.check2.outcome == 'success')
