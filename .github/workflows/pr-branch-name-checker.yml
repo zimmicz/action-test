@@ -27,6 +27,11 @@ jobs:
           allowed_prefixes: 'release'
           ignore: main,develop
 
+      - name: test
+        run: |
+          echo ${{steps.check1.outcome}}
+          echo ${{steps.check2.outcome}}
+
       - name: result
         if: always() && (steps.check1 == 'success' || steps.check2 == 'success')
         run: exit 0
