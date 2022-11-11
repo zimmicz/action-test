@@ -4,12 +4,11 @@
     "color": "EEEEEE"
   },
   "CHECKS": {
-    "regexp": "\\[(LEV|LW)-[0-9]+\\] [A-Z]{1}.*",
-    "ignoreLabels" : ["skip-title-check", "creative-friday"]
+    "regexp": "\\[(LEV|LW)-[0-9]+\\] [A-Z]{1}.*"
   },
   "MESSAGES": {
     "success": "PR title is ok",
-    "failure": "Failing CI test"
+    "failure": "PR title should follow this format: [TICKET-ID] Uppercased title, e.g. [LEV-100] Hello world or [LW-100] Hello world."
   }
 }
 
