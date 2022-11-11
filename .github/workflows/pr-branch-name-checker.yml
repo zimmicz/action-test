@@ -12,7 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo
-        run: echo ${{github.head_ref}}
+        run: |
+          echo ${{github.head_ref}}
+          echo ${{startsWith('release',github.head_ref)}}
       - name: check1
         if: startsWith('feature,bugfix,hotfix', github.head_ref)
         uses: deepakputhraya/action-branch-name@master
