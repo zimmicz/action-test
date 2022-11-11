@@ -11,6 +11,8 @@ jobs:
   branch-naming-rules:
     runs-on: ubuntu-latest
     steps:
+      - name: echo
+        run: echo ${{github.ref}}
       - name: check1
         if: contains('refs/heads/feature,refs/heads/bugfix,refs/heads/hotfix', github.ref)
         uses: deepakputhraya/action-branch-name@master
