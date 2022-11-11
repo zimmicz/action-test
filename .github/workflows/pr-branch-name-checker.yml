@@ -11,10 +11,6 @@ jobs:
   branch-naming-rules:
     runs-on: ubuntu-latest
     steps:
-      - name: check branch prefix
-        if: !contains('refs/heads/feature,refs/heads/bugfix,refs/heads/hotfix', github.ref)
-        run: exit 1
-
       - name: check1
         if: contains('refs/heads/feature,refs/heads/bugfix,refs/heads/hotfix', github.ref)
         uses: deepakputhraya/action-branch-name@master
@@ -26,3 +22,6 @@ jobs:
         uses: deepakputhraya/action-branch-name@master
         with:
           regex: 'v\.[0-9]+.[0-9]+.[0-9]+'
+
+      - name: fallback
+        run: exit 1
