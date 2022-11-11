@@ -38,7 +38,7 @@ jobs:
   unknown-branch-naming-rules:
     needs: [feature-or-fix-branch-naming-rules, release-branch-naming-rules, creative-friday-branch-naming-rules]
     runs-on: ubuntu-latest
-    if: job.feature-or-fix-branch-naming-rules.outcome == 'skipped' && steps.release-branch-naming-rules.outcome == 'skipped' && steps.creative-friday-branch-naming-rules.outcome == 'skipped'
+    if: jobs.feature-or-fix-branch-naming-rules.outcome == 'skipped' && jobs.release-branch-naming-rules.outcome == 'skipped' && jobs.creative-friday-branch-naming-rules.outcome == 'skipped'
     steps:
       - run: |
           cat <<'END'
