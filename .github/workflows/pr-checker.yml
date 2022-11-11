@@ -8,14 +8,6 @@ on:
       - synchronize
 
 jobs:
-  echo:
-    runs-on: ubuntu-latest
-    steps:
-      - name: echo
-        run: |
-          echo ${{github.head_ref}}
-          echo ${{startsWith(github.head_ref, 'feature,bugfix,hotfix')}}
-
   feature-or-fix-branch-naming-rules:
     runs-on: ubuntu-latest
     if: |
