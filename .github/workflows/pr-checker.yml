@@ -40,6 +40,8 @@ jobs:
     runs-on: ubuntu-latest
     if: needs.feature-or-fix-branch-naming-rules.result == 'skipped' && needs.release-branch-naming-rules.result == 'skipped' && needs.creative-friday-branch-naming-rules.result == 'skipped'
     steps:
+      - name: echo
+        run: echo ${{ needs.feature-or-fix-branch-naming-rules.result}}
       - run: |
           cat <<'END'
           Branch name does not adhere to standards. Following branch name patterns are allowed:
