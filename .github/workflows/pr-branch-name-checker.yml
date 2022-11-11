@@ -27,4 +27,7 @@ jobs:
           regex: 'v[0-9]+.[0-9]+.[0-9]+'
 
       - name: fallback
-        run: exit 1
+        if: failure()
+        run: |
+          echo "Branch name does not adhere to standards."
+          exit 1
