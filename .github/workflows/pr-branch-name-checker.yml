@@ -31,7 +31,9 @@ jobs:
         run: |
           echo ${{steps.check1.outcome}}
           echo ${{steps.check2.outcome}}
+          echo ${{steps.check1.conclusion}}
+          echo ${{steps.check2.conclusion}}
 
       - name: result
-        if: always() && (steps.check1 == 'success' || steps.check2 == 'success')
+        if: always() && (steps.check1.outcome == 'success' || steps.check2.outcome == 'success')
         run: exit 0
