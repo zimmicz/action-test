@@ -5,13 +5,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: get JIRA ticket number
-        # extract ticket number out of the title
-        run: echo "TICKET_NUMBER=$(echo ${{ github.event.pull_request.title }} | cut -f 1 -d ' ' | sed 's/\[//g' | sed 's/\]//g')" >> $GITHUB_ENV
-      - name: echo JIRA ticket number
-        run: echo $TICKET_NUMBER
+        # extract JIRA ticket number out of the title
+        run: echo "JIRA_TICKET_NUMBER=$(echo ${{ github.event.pull_request.title }} | cut -f 1 -d ' ' | sed 's/\[//g' | sed 's/\]//g')" >> $GITHUB_ENV
       - uses: wow-actions/auto-comment@v1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           pullRequestOpened: |
-            👋 @{{ author }}, we found a JIRA ticket for you!
-            JIRA link: [${{ env.TICKET_NUMBER }}](https://levelworks.atlassian.net/browse/${{ env.TICKET_NUMBER }})
+            We found a JIRA ticket for you!
+            JIRA link: [${{ env.JIRA_TICKET_NUMBER }}](https://levelworks.atlassian.net/browse/${{ env.JIRA_TICKET_NUMBER }})
