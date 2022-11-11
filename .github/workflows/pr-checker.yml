@@ -26,7 +26,7 @@ jobs:
 
       - name: check release branch name format
         id: check2
-        if: ${{env.IS_RELEASE}}
+        if: startsWith(github.head_ref, 'release')
         uses: deepakputhraya/action-branch-name@master
         with:
           regex: '[a-z]+\/v[0-9]+.[0-9]+.[0-9]+'
