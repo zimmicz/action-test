@@ -11,26 +11,29 @@ jobs:
   feature-or-fix-branch-naming-rules:
     runs-on: ubuntu-latest
     if: startsWith(github.head_ref, 'feature,bugfix,hotfix')
-    uses: deepakputhraya/action-branch-name@master
-    with:
-      regex: '[a-z]+\/(LEV|LW)-[0-9]+-\S+'
-      allowed_prefixes: 'feature,bugfix,hotfix'
+    steps:
+      - uses: deepakputhraya/action-branch-name@master
+      with:
+        regex: '[a-z]+\/(LEV|LW)-[0-9]+-\S+'
+        allowed_prefixes: 'feature,bugfix,hotfix'
 
   release-branch-naming-rules:
     runs-on: ubuntu-latest
     if: startsWith(github.head_ref, 'release')
-    uses: deepakputhraya/action-branch-name@master
-    with:
-      regex: '[a-z]+\/v[0-9]+.[0-9]+.[0-9]+'
-      allowed_prefixes: 'release'
+    steps:
+      - uses: deepakputhraya/action-branch-name@master
+        with:
+          regex: '[a-z]+\/v[0-9]+.[0-9]+.[0-9]+'
+          allowed_prefixes: 'release'
 
   creative-friday-branch-naming-rules:
     runs-on: ubuntu-latest
     if: startsWith(github.head_ref, 'creative-friday')
-    uses: deepakputhraya/action-branch-name@master
-    with:
-      regex: '[a-z]+\/\S+'
-      allowed_prefixes: 'creative-friday'
+    steps:
+      - uses: deepakputhraya/action-branch-name@master
+        with:
+          regex: '[a-z]+\/\S+'
+          allowed_prefixes: 'creative-friday'
 
   unknown-branch-naming-rules:
     needs: [feature-or-fix-branch-naming-rules, release-branch-naming-rules, creative-friday-branch-naming-rules]
