@@ -18,7 +18,10 @@ jobs:
 
   feature-or-fix-branch-naming-rules:
     runs-on: ubuntu-latest
-    if: startsWith(github.head_ref, 'feature,bugfix,hotfix')
+    if: |
+      startsWith(github.head_ref, 'feature') ||
+      startsWith(github.head_ref, 'hotfix') ||
+      startsWith(github.head_ref, 'bugfix')
     steps:
       - uses: deepakputhraya/action-branch-name@master
         with:
@@ -61,7 +64,10 @@ jobs:
 
   title-check:
     runs-on: ubuntu-latest
-    if: startsWith(github.head_ref, 'feature,bugfix,hotfix')
+    if: |
+      startsWith(github.head_ref, 'feature') ||
+      startsWith(github.head_ref, 'hotfix') ||
+      startsWith(github.head_ref, 'bugfix')
     steps:
       - uses: thehanimo/pr-title-checker@v1.3.5
         with:
