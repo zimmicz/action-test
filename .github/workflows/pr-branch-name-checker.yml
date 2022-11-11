@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: check1
+        continue-on-error: true
         uses: deepakputhraya/action-branch-name@master
         with:
           regex: '(LEV|LW)-[0-9]+-\S+'
@@ -19,6 +20,7 @@ jobs:
           ignore: main,develop
 
       - name: check2
+        continue-on-error: true
         uses: deepakputhraya/action-branch-name@master
         with:
           regex: 'v\.[0-9]+.[0-9]+.[0-9]+'
